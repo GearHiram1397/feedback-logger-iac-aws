@@ -85,6 +85,7 @@ Once deployed, find the public endpoint (ECS service public IP or load balancer 
 ```sh
 curl -X POST http://<service-endpoint>:3000/submit-feedback \
   -H "Content-Type: application/json" \
+  -H "x-api-key: <your_api_secret>" \
   -d '{ "message": "Loved the experience!" }'
 ```
 
@@ -92,6 +93,7 @@ curl -X POST http://<service-endpoint>:3000/submit-feedback \
 - Set method to POST
 - URL: `http://<service-endpoint>:3000/submit-feedback`
 - Body: raw JSON `{ "message": "Loved the experience!" }`
+- Header `x-api-key: <your_api_secret>`
 
 ## Project Structure
 ```
