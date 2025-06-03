@@ -4,6 +4,8 @@ const PORT = process.env.PORT || 3000;
 const API_SECRET = process.env.API_SECRET || 'default_secret';
 
 app.use(express.json());
+// Serve static files from the "public" directory
+app.use(express.static('public'));
 
 // POST /submit-feedback endpoint
 app.post('/submit-feedback', (req, res) => {
