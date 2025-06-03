@@ -1,0 +1,21 @@
+const express = require('express');
+const app = express();
+const PORT = process.env.PORT || 3000;
+const API_SECRET = process.env.API_SECRET || 'default_secret';
+
+app.use(express.json());
+
+// POST /submit-feedback endpoint
+app.post('/submit-feedback', (req, res) => {
+  const { message } = req.body;
+  if (!message) {
+    return res.status(400).json({ error: 'Message is required.' });
+  }
+  // Here you could add logic to store feedback, e.g., in a database or log
+  console.log(`Feedback received: ${message}`);
+  res.status(200).json({ status: 'success', message: 'Feedback received.' });
+});
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+}); 
