@@ -1,4 +1,5 @@
 const express = require('express');
+require('dotenv').config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 const API_SECRET = process.env.API_SECRET || 'default_secret';
@@ -7,6 +8,11 @@ app.use(express.json());
 
 // POST /submit-feedback endpoint
 app.post('/submit-feedback', (req, res) => {
+  const apiKey = req.headers['x-api-key'];
+  if (apiKey !== API_SECRET) {
+    return res.status(403).json({ error: 'Unauthorized' });
+  }
+
   const { message } = req.body;
   if (!message) {
     return res.status(400).json({ error: 'Message is required.' });
