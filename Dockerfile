@@ -8,8 +8,16 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 RUN npm ci --only=production
 
+# Build React frontend
+COPY frontend ./frontend
+RUN cd frontend \
+    && npm ci \
+    && npm run build \
+    && rm -rf node_modules
+
 # Copy app source
-COPY . .
+COPY app.js ./
+COPY frontend/dist ./frontend/dist
 
 # Expose port
 EXPOSE 3000

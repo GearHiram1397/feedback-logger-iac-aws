@@ -6,7 +6,8 @@ A complete example project for deploying a microservice to AWS using Docker, Ter
 This project demonstrates best practices for deploying a simple Node.js + Express feedback API as a containerized microservice on AWS ECS Fargate, using Infrastructure as Code (IaC) with Terraform and automated CI/CD with GitHub Actions.
 
 ## Tech Stack
-- Node.js + Express
+- Node.js + Express backend
+- React + Vite + Tailwind frontend
 - Docker
 - AWS ECS (Fargate), ECR, IAM, VPC
 - Terraform
@@ -40,6 +41,7 @@ cp .env.example .env
 ```
 
 ### 3. Build and run locally (optional)
+Build the React app and start the API server using Docker:
 ```sh
 docker build -t feedback-logger .
 docker run --env-file .env -p 3000:3000 feedback-logger
@@ -100,6 +102,9 @@ curl -X POST http://<service-endpoint>:3000/submit-feedback \
 feedback-logger-iac-aws/
 ├── app.js
 ├── package.json
+├── frontend/
+│   ├── src/
+│   └── dist/
 ├── Dockerfile
 ├── .env.example
 ├── terraform/
